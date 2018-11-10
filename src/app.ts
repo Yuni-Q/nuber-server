@@ -6,9 +6,10 @@ import schema from "./schema";
 
 class App {
   public app: GraphQLServer;
+  // App 클래스를 새로 시작(생성) 하면 가장 처음 실행되는 함수
   constructor() {
     this.app = new GraphQLServer({
-      schema
+      schema,
     });
     this.middlewares();
   }
