@@ -22,7 +22,9 @@
     "types": "graphql-to-typescript ./src/schema.graphql ./src/types/graph.d.ts"
   },
   "dependencies": {
+    "class-validator": "^0.9.1",
     "cors": "^2.8.5",
+    "dotenv": "^6.1.0",
     "graphql": "^14.0.2",
     "graphql-tools": "^4.0.3",
     "graphql-yoga": "^1.16.7",
