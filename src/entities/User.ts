@@ -1,4 +1,5 @@
 
+import bcrypt from 'bcrypt';
 import { IsEmail } from 'class-validator';
 import {
   BaseEntity,
@@ -6,8 +7,12 @@ import {
   CreateDateColumn,
   Entity,
   PrimaryGeneratedColumn,
-  UpdateDateColumn
+  UpdateDateColumn,
+  BeforeInsert,
+  BeforeUpdate
 } from 'typeorm';
+
+const BCRYPT_ROUNDS = 10;
 
 @Entity()
 class User extends BaseEntity {
@@ -67,6 +72,23 @@ class User extends BaseEntity {
 
   @CreateDateColumn() createAt: string;
   @UpdateDateColumn() updateAt: string;
+
+  
+
+  // 새로운 object를 만들기 전에 불려지는 메소드
+  @BeforeInsert()
+  // object update하기 전에 불려지는 메소드
+  @BeforeUpdate()
+  async savePassword(): Promise<void> {
+    if (this.password) {
+      const hashPassword = await this.hashPassword(this.password);
+      this.password = hashPassword;
+    }
+  }
+
+  private hashPassword(password:string): Promise<string> {
+    return bcrypt.hash(password, BCRYPT_ROUNDS)
+  }
 }
 
 export default User;
