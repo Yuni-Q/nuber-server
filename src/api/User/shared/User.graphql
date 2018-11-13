@@ -19,3 +19,7 @@ type User {
   createAt: String!
   updateAt: String
 }
+
+type Query {
+  user: User
+}
