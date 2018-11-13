@@ -73,7 +73,9 @@ class User extends BaseEntity {
   @CreateDateColumn() createAt: string;
   @UpdateDateColumn() updateAt: string;
 
-  
+  public comparePassword(password: string): Promise<boolean> {
+    return bcrypt.compare(password, this.password);
+  }
 
   // 새로운 object를 만들기 전에 불려지는 메소드
   @BeforeInsert()
