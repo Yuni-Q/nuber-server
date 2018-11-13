@@ -25,7 +25,7 @@ class User extends BaseEntity {
   email: string;
 
   @Column({ type: 'boolean', default: false })
-  verifiedEmail: boolean
+  verifiedEmail: boolean;
 
   @Column({ type: 'text' })
   firstName: string;
@@ -43,28 +43,28 @@ class User extends BaseEntity {
   phoneNumber: string;
 
   @Column({ type: 'boolean', default: false })
-  verifiedphoneNumber: boolean
+  verifiedphoneNumber: boolean;
 
   @Column({ type: 'text' })
   profilePhoto: string;
 
   @Column({ type: 'boolean', default: false })
-  isDriving: boolean
+  isDriving: boolean;
 
   @Column({ type: 'boolean', default: false })
-  isRiding: boolean
+  isRiding: boolean;
 
   @Column({ type: 'boolean', default: false })
-  isTaken: boolean
+  isTaken: boolean;
 
   // Float가 지원이 잘 안된다고 합니다
   // double precision가 Float랑 같다고 합니다.
   @Column({ type: 'double precision', default: 0 })
-  lastLng: number
+  lastLng: number;
   @Column({ type: 'double precision', default: 0 })
-  lastLat: number
+  lastLat: number;
   @Column({ type: 'double precision', default: 0 })
-  lastOrientation: number
+  lastOrientation: number;
 
   get fullName(): string {
     return `${this.firstName} ${this.lastName}`;
