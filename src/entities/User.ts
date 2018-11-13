@@ -3,14 +3,19 @@ import bcrypt from 'bcrypt';
 import { IsEmail } from 'class-validator';
 import {
   BaseEntity,
+  BeforeInsert,
+  BeforeUpdate,
   Column,
   CreateDateColumn,
   Entity,
+  ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
-  BeforeInsert,
-  BeforeUpdate
 } from 'typeorm';
+
+import Chat from './Chat';
+import Message from './Message';
 
 const BCRYPT_ROUNDS = 10;
 
@@ -66,12 +71,18 @@ class User extends BaseEntity {
   @Column({ type: 'double precision', default: 0 })
   lastOrientation: number;
 
-  get fullName(): string {
-    return `${this.firstName} ${this.lastName}`;
-  }
+  @ManyToOne(type => Chat, chat=> chat.participants)
+  chat: Chat;
+
+  @OneToMany(tepe => Message, message => message.user)
+  messages: Message[];  
 
   @CreateDateColumn() createAt: string;
   @UpdateDateColumn() updateAt: string;
+
+  get fullName(): string {
+    return `${this.firstName} ${this.lastName}`;
+  }
 
   public comparePassword(password: string): Promise<boolean> {
     return bcrypt.compare(password, this.password);
