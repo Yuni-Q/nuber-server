@@ -13,16 +13,16 @@ const resolvers: Resolvers = {
       const { fbId } = args;
       try {
         const existingUser = await User.findOne({ fbId })
-        if(existingUser) {
+        if (existingUser) {
           return {
             ok: true,
             error: null,
-           token: 'Coming soon',
+            token: 'Coming soon',
           }
         } else {
 
         }
-      } catch(error){
+      } catch (error) {
         return {
           ok: false,
           error: error.message,
@@ -30,8 +30,13 @@ const resolvers: Resolvers = {
         }
       }
       try {
-
-      } catch(error) {
+        await User.create({ ...args, profilePhoto: `hppt://graph.facebook.com/${fbId}/picture>type=square` }).save();
+        return {
+          ok: true,
+          error: null,
+          token: 'Coming soon',
+        }
+      } catch (error) {
         return {
           ok: false,
           error: error.message,
