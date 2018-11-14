@@ -68,10 +68,15 @@ class User extends BaseEntity {
   // double precision가 Float랑 같다고 합니다.
   @Column({ type: 'double precision', default: 0 })
   lastLng: number;
+
   @Column({ type: 'double precision', default: 0 })
   lastLat: number;
+
   @Column({ type: 'double precision', default: 0 })
   lastOrientation: number;
+
+  @Column({type: 'text', nullable: true})
+  fbId: string;
 
   @ManyToOne(type => Chat, chat=> chat.participants)
   chat: Chat;
