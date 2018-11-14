@@ -45,3 +45,7 @@ yarn add pg
 psql
 CREATE DATABASE nuber;
 ```
+
+## 중간 확인
+인터넷  
+localhost:4000/playground
