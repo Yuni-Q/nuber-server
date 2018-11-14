@@ -1,15 +1,14 @@
 
-import User from "src/entities/User";
+import User from "../../../entities/User";
 import {
-  FacebookConnectMutaionArgs,
+  FacebookConnectMutationArgs,
   FacebookConnectResponse,
-} from "src/types/graph";
-import { Resolvers } from "src/types/resolvers";
-import { nonInputTypeOnVarMessage } from "graphql/validation/rules/VariablesAreInputTypes";
+} from "../../../types/graph";
+import { Resolvers } from "../../../types/resolvers";
 
 const resolvers: Resolvers = {
   Mutation: {
-    FacebookConnet: async (_, args: FacebookConnectMutaionArgs): Promise<FacebookConnectResponse> => {
+    FacebookConnect: async (_, args: FacebookConnectMutationArgs): Promise<FacebookConnectResponse> => {
       const { fbId } = args;
       try {
         const existingUser = await User.findOne({ fbId })
