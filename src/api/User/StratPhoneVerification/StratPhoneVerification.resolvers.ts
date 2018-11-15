@@ -12,6 +12,11 @@ const resolvers: Resolvers = {
         if ( existingVerification) {
           await existingVerification.remove();
         }
+        const newVerifcation = await Verification.create({
+          payload: phoneNumber,
+          target: "PHONE",
+        }).save();
+        // TODO: send sms
         return {
           ok: true,
           error: null,

@@ -10,7 +10,6 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 import { verificationTarget } from 'src/types/types';
-import User from './User';
 
 const PHONE = 'PHONE';
 const EMAIL = 'EMAIL';
@@ -21,19 +20,13 @@ class Verification extends BaseEntity {
 
   @Column({ type: 'text', enum: [PHONE, EMAIL] })
   // PHONE / EMAIL 2개 밖에 존재하지 않기 때문에 사용
-  targer: verificationTarget;
+  target: verificationTarget;
   
   @Column({ type: 'text' })
   payload: string;
   
   @Column({ type: 'text' })
-  key: string;
-
-  @Column({ type: 'boolean', default: false })
-  used: boolean;
-
-  @ManyToOne(type => User, user => user.verifications, { nullable: true})
-  user: User;
+  key: string
 
   @CreateDateColumn() createAt: string;
   @UpdateDateColumn() updateAt: string;
