@@ -17,6 +17,8 @@ const resolvers: Resolvers = {
           target: "PHONE",
         }).save();
         // TODO: send sms
+        // await sendVerificationSMS(newVerifcation.payload, newVerifcation.key);
+        console.log(newVerifcation);
         return {
           ok: true,
           error: null,

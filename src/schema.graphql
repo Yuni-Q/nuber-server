@@ -100,10 +100,9 @@ type StratPhoneVerificationResponse {
 
 type Verification {
   id: Int!
-  targer: String!
+  target: String!
   payload: String!
   key: String!
-  used: Boolean!
   createAt: String!
   updateAt: String
 }

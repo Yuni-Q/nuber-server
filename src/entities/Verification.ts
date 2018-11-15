@@ -5,7 +5,6 @@ import {
   Column,
   CreateDateColumn,
   Entity,
-  ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -33,9 +32,9 @@ class Verification extends BaseEntity {
 
   @BeforeInsert()
   createKey(): void {
-    if (this.targer === PHONE) {
+    if (this.target === PHONE) {
       this.key = Math.floor(Math.random() * 100000).toString();
-    } else if (this.targer === EMAIL) {
+    } else if (this.target === EMAIL) {
       // toString(36)을 통해 소수점 아래를 string값으로 바꿔 줍니다.
       // ex) 0.agahsrhwr1hr
       // substr(2)를 통해 0. 부분을 제거합니다.
