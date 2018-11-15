@@ -49,7 +49,7 @@ class User extends BaseEntity {
   phoneNumber: string;
 
   @Column({ type: 'boolean', default: false })
-  verifiedphoneNumber: boolean;
+  verifiedPhoneNumber: boolean;
 
   @Column({ type: 'text' })
   profilePhoto: string;

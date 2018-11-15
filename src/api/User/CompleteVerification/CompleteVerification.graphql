@@ -7,5 +7,5 @@ type CompleteVerificationResponse {
 
 
 type Mutation {
-  CompleteVerification(phoneNumber: string!, key: string!): CompleteVerificationResponse!
+  CompleteVerification(phoneNumber: String!, key: String!): CompleteVerificationResponse!
 }
