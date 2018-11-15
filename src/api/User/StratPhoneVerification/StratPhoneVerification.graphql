@@ -1,0 +1,9 @@
+
+type StratPhoneVerificationResponse {
+  ok: Boolean!
+  error: String
+}
+
+type Mutation {
+  StratPhoneVerification(phoneNumber: String!): StratPhoneVerificationResponse!
+}
