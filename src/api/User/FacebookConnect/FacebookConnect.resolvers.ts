@@ -18,8 +18,6 @@ const resolvers: Resolvers = {
             error: null,
             token: 'Coming soon, alreay',
           }
-        } else {
-
         }
       } catch (error) {
         return {
