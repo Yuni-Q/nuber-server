@@ -16,7 +16,7 @@ Sever for the (N)Uber Clone Course on Nomad Academy. GraphQL, Typescript, NodeJS
 
 ### Authentication:
 
-- [ ] Generate JWT
+- [x] Generate JWT
 - [ ] Verify JWT
 
 ---
