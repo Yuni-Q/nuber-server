@@ -3,9 +3,9 @@ import {
   BaseEntity,
   CreateDateColumn,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
-  OneToMany
 } from 'typeorm';
 
 import Message from './Message';
