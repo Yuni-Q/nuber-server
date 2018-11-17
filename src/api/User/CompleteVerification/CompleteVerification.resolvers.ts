@@ -3,7 +3,7 @@ import User from "../../../entities/User";
 import Verification from "../../../entities/Verification";
 import { CompleteVerificationMutationArgs, CompleteVerificationResponse } from "../../../types/graph";
 import { Resolvers } from "../../../types/resolvers";
-import createJWT from "../../../entities/createJWT";
+import createJWT from "../../../utils/createJWT";
 
 const resolvers: Resolvers = {
   Mutation: {
