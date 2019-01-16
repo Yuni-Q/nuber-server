@@ -1,5 +1,6 @@
 
 import User from "../../../entities/User";
+import Verification from "../../../entities/Verification";
 import {
   EmailSignInMutationArgs, EmailSignUpResponse,
 } from "../../../types/graph";
@@ -20,6 +21,12 @@ const resolvers: Resolvers = {
           }
         } else {
           const newUser = await User.create({ ...args }).save();
+          if (newUser.email) {
+            const emailVerification = await Verification.create({
+              payload: newUser.email,
+              target: "EMAIL",
+            });
+          }
           const token = createJWT(newUser.id)
           return {
             ok: true,
