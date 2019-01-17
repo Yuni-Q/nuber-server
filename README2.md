@@ -23,9 +23,9 @@ Sever for the (N)Uber Clone Course on Nomad Academy. GraphQL, Typescript, NodeJS
 
 ### Private Resolvers:
 
-
-- [x] Verify Email
-- [ ] Get mey Profile
+- [x] Get mey Profile
+- [ ] Request Email Verification
+- [ ] Complete Verify Email
 - [ ] Update my Profile
 - [ ] Toggle Driving Mode
 - [ ] Report Location / Orientation
