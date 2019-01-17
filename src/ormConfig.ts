@@ -1,6 +1,6 @@
 import { ConnectionOptions } from 'typeorm';
 
-const connectionOptions: ConnectionOptions =  {
+const connectionOptions: ConnectionOptions = {
   type: 'postgres',
   database: 'nuber',
   synchronize: true,
@@ -9,7 +9,7 @@ const connectionOptions: ConnectionOptions =  {
     'entities/**/*.*'
   ],
   host: process.env.DB_ENDPOINT,
-  port: 5432,
+  port: 5433,
   username: process.env.DB_USERNAME,
   password: process.env.DB_PASSWORD,
 }
