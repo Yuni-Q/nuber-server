@@ -1,6 +1,5 @@
-
-import bcrypt from 'bcrypt';
-import { IsEmail } from 'class-validator';
+import bcrypt from "bcrypt";
+import { IsEmail } from "class-validator";
 import {
   BaseEntity,
   BeforeInsert,
@@ -11,83 +10,86 @@ import {
   ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
-  UpdateDateColumn,
-} from 'typeorm';
+  UpdateDateColumn
+} from "typeorm";
 
-import Chat from './Chat';
-import Message from './Message';
-import Ride from './Ride';
+import Chat from "./Chat";
+import Message from "./Message";
+import Place from "./Place";
+import Ride from "./Ride";
 
 const BCRYPT_ROUNDS = 10;
 
 @Entity()
 class User extends BaseEntity {
-
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ type: 'text', nullable: true })
+  @Column({ type: "text", nullable: true })
   @IsEmail()
   email: string | null;
 
-  @Column({ type: 'boolean', default: false })
+  @Column({ type: "boolean", default: false })
   verifiedEmail: boolean;
 
-  @Column({ type: 'text' })
+  @Column({ type: "text" })
   firstName: string;
 
-  @Column({ type: 'text' })
+  @Column({ type: "text" })
   lastName: string;
 
-  @Column({ type: 'int', nullable: true })
+  @Column({ type: "int", nullable: true })
   age: number;
 
-  @Column({ type: 'text', nullable: true })
+  @Column({ type: "text", nullable: true })
   password: string;
 
-  @Column({ type: 'text', nullable: true })
+  @Column({ type: "text", nullable: true })
   phoneNumber: string;
 
-  @Column({ type: 'boolean', default: false })
+  @Column({ type: "boolean", default: false })
   verifiedPhoneNumber: boolean;
 
-  @Column({ type: 'text' })
+  @Column({ type: "text" })
   profilePhoto: string;
 
-  @Column({ type: 'boolean', default: false })
+  @Column({ type: "boolean", default: false })
   isDriving: boolean;
 
-  @Column({ type: 'boolean', default: false })
+  @Column({ type: "boolean", default: false })
   isRiding: boolean;
 
-  @Column({ type: 'boolean', default: false })
+  @Column({ type: "boolean", default: false })
   isTaken: boolean;
 
   // Float가 지원이 잘 안된다고 합니다
   // double precision가 Float랑 같다고 합니다.
-  @Column({ type: 'double precision', default: 0 })
+  @Column({ type: "double precision", default: 0 })
   lastLng: number;
 
-  @Column({ type: 'double precision', default: 0 })
+  @Column({ type: "double precision", default: 0 })
   lastLat: number;
 
-  @Column({ type: 'double precision', default: 0 })
+  @Column({ type: "double precision", default: 0 })
   lastOrientation: number;
 
-  @Column({type: 'text', nullable: true})
+  @Column({ type: "text", nullable: true })
   fbId: string;
 
-  @ManyToOne(type => Chat, chat=> chat.participants)
+  @ManyToOne(type => Chat, chat => chat.participants)
   chat: Chat;
 
   @OneToMany(tepe => Message, message => message.user)
-  messages: Message[];  
+  messages: Message[];
 
   @OneToMany(type => Ride, ride => ride.passenger)
   ridesAsPassenger: Ride[];
 
   @OneToMany(type => Ride, ride => ride.driver)
   ridesAsDriver: Ride[];
+
+  @OneToMany(type => Place, place => place.user)
+  places: Place[];
 
   @CreateDateColumn() createAt: string;
   @UpdateDateColumn() updateAt: string;
@@ -111,8 +113,8 @@ class User extends BaseEntity {
     }
   }
 
-  private hashPassword(password:string): Promise<string> {
-    return bcrypt.hash(password, BCRYPT_ROUNDS)
+  private hashPassword(password: string): Promise<string> {
+    return bcrypt.hash(password, BCRYPT_ROUNDS);
   }
 }
 
