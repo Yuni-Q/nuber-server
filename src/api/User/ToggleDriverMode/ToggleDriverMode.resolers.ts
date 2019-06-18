@@ -1,7 +1,7 @@
-import User from "src/entities/User";
-import { ToggleDriverModeResponse } from "src/types/graph";
-import { Resolvers } from "src/types/resolvers";
-import privateResolver from "src/utils/privateResolver";
+import User from "../../../entities/User";
+import { ToggleDriverModeResponse } from "../../../types/graph";
+import { Resolvers } from "../../../types/resolvers";
+import privateResolver from "../../../utils/privateResolver";
 
 const resolvers: Resolvers = {
   Mutation: {

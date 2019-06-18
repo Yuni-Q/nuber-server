@@ -1,11 +1,11 @@
-import Place from "src/entities/Place";
-import User from "src/entities/User";
-import { Resolvers } from "src/types/resolvers";
-import privateResolver from "src/utils/privateResolver";
+import Place from "../../../entities/Place";
+import User from "../../../entities/User";
+import { Resolvers } from "../../../types/resolvers";
+import privateResolver from "../../../utils/privateResolver";
 
 const resolvers: Resolvers = {
   Mutation: {
-    addPlace: privateResolver(async (_, args, { req }) => {
+    AddPlace: privateResolver(async (_, args, { req }) => {
       const user: User = req.user;
       try {
         await Place.create({ ...args, user }).save();

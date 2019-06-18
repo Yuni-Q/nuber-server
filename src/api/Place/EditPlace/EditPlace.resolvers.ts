@@ -1,8 +1,8 @@
-import Place from "src/entities/Place";
-import User from "src/entities/User";
-import { Resolvers } from "src/types/resolvers";
-import cleanNullArgs from "src/utils/cleanNullArgs";
-import privateResolver from "src/utils/privateResolver";
+import Place from "../../../entities/Place";
+import User from "../../../entities/User";
+import { Resolvers } from "../../../types/resolvers";
+import cleanNullArgs from "../../../utils/cleanNullArgs";
+import privateResolver from "../../../utils/privateResolver";
 
 const resolvers: Resolvers = {
   Mutation: {
