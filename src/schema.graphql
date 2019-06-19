@@ -24,12 +24,14 @@ type Mutation {
   AddPlace(name: String, lat: Float!, lng: Float!, address: String!, isFav: Boolean!): AddPlaceResponse!
   DeletePlace(placeId: Int!): DeletePlaceResponse!
   EditPlace(placeId: Int!, name: String, isFav: Boolean): EditPlaceRespones!
+  requestRide(pickUpLocation: String!, dropOffLocation: String!, pickUpLat: Float!, pickUpLng: Float!, dropOffLat: Float!, dropOffLng: Float!, price: Float!, distance: String!, duration: String!): RequestRideResponse!
+  updateRide(rideId: Int!, status: String, driverRating: Float, passengerRating: Float, driverId: Int): UpdateRideResponse!
   CompleteEmailVerification(key: String!): CompleteEmailVerificationResponse!
   CompletePhoneVerification(phoneNumber: String!, key: String!): CompletePhoneVerificationResponse!
   EmailSignIn(email: String!, password: String!): EmailSignInResponse!
   EmailSignUp(firstName: String!, lastName: String!, email: String!, password: String!, profilePhoto: String!, age: Int!, phoneNumber: String!): EmailSignUpResponse!
   FacebookConnect(firstName: String!, lastName: String!, email: String, fbId: String!): FacebookConnectResponse!
-  ReportMovement(orientation: Float, lat: Float, lng: Float): ReportMovementResponse!
+  ReportMovement(orientation: Float, LastLat: Float, LastLng: Float): ReportMovementResponse!
   RequestEmailVerification: RequestEmailVerificationResponse!
   StratPhoneVerification(phoneNumber: String!): StratPhoneVerificationResponse!
   ToggleDriverMode: ToggleDriverModeResponse!
@@ -54,6 +56,7 @@ type GetMyPlacesRespones {
 
 type Query {
   GetMyPlaces: GetMyPlacesRespones!
+  getRideRequest: GetRideRequestResponse!
   GetMyProfile: GetMyProfileResponse!
   GetNearbyDrivers: GetNearbyDriversRespose!
 }
@@ -71,6 +74,18 @@ type Place {
   updateAt: String
 }
 
+type GetRideRequestResponse {
+  ok: Boolean!
+  error: String
+  ride: Ride
+}
+
+type RequestRideResponse {
+  ok: Boolean!
+  ride: Ride
+  error: String
+}
+
 type Ride {
   id: Int!
   status: String!
@@ -83,10 +98,18 @@ type Ride {
   price: Float!
   distance: String!
   duration: String!
+  passengerId: Int!
   passenger: User!
+  driverId: Int!
   driver: User!
   createAt: String!
   updateAt: String
+}
+
+type UpdateRideResponse {
+  ok: Boolean!
+  ride: Ride
+  error: String
 }
 
 type CompleteEmailVerificationResponse {
@@ -98,6 +121,10 @@ type CompletePhoneVerificationResponse {
   ok: Boolean!
   error: String
   token: String
+}
+
+type Subscription {
+  DriversSubscripton: User
 }
 
 type EmailSignInResponse {

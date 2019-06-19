@@ -18,6 +18,7 @@ class App {
 		this.app = new GraphQLServer({
 			schema,
 			context: (req) => {
+				// default 값 넣어주기
 				const { connection: { context = null } = {} } = req;
 				return {
 					req: req.request,
