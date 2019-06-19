@@ -11,6 +11,7 @@ const resolvers: Resolvers = {
 			const user: User = req.user;
 			const { lastLat, lastLng } = user;
 			try {
+				// 특정 함수를 사용하려면 getRepository 사용
 				const drivers: User[] = await getRepository(User).find({
 					isDriving: true,
 					lastLat: Between(lastLat - 0.05, lastLat + 0.05),
